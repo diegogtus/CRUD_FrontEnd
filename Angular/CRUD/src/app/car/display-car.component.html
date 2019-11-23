@@ -1,0 +1,61 @@
+<div class="col-md-12 mx-auto">
+    <div class="panel panel-primary" >
+        <div class="panel-heading">
+                <h3 class="panel-title">{{car.model}}</h3>
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                        <div class="col-md-5">
+                            <div class="image-container" width="100%">
+                                <img class="imageClass" src="{{car.path}}" width="auto" height="auto"/>
+                            </div>                                
+                        </div>
+                        <div class="col-md-7">
+                            <div class="row">
+                                    <div class="col-xs-4 text-left mx-auto">
+                                        Brand:
+                                    </div>
+                                    <div class="col-xs-6">
+                                        {{car.brand}}
+                                    </div>
+                            </div>
+                            <div class="row">
+                                    <div class="col-xs-4 text-left mx-auto">
+                                        Year:
+                                    </div>
+                                    <div class="col-xs-6">
+                                        {{car.year}}
+                                    </div>
+                            </div>
+                            <div class="row">
+                                    <div class="col-xs-4 text-left mx-auto">
+                                        Displacement:
+                                    </div>
+                                    <div class="col-xs-6">
+                                        {{car.displacement}}
+                                    </div>
+                            </div>
+                            <div class="row">
+                                    <div class="col-xs-4 text-left mx-auto">
+                                        Description:
+                                    </div>
+                                    <div class="col-xs-6">
+                                        {{car.description}}
+                                    </div>
+                            </div>
+                        </div>
+                </div>
+                
+            </div>
+            <div class='panel-footer'>
+                <button class="btn btn-primary" (click)="editCar()">Edit</button>
+                <span *ngIf="confirmDelete">
+                    <span>Are you sure you want to delete the current car? - {{car._id}}</span>
+                    <button class="btn btn-danger first" (click)="deleteCar(car._id)">Yes</button>
+                    <button class="btn btn-primary" (click)="confirmDelete = false">No</button>
+                </span>
+                <button *ngIf="!confirmDelete" class="btn btn-danger first" 
+                (click)="confirmDelete = true">Delete</button>
+            </div>
+    </div>
+</div>

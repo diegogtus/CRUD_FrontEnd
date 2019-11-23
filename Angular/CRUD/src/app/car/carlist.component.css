@@ -1,0 +1,8 @@
+.imageClass{
+    width: 175px;
+    height: 100px;
+}
+.vertical-align{
+    display: flex;
+    align-items: center;
+}
