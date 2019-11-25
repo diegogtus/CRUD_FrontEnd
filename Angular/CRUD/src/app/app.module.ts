@@ -15,7 +15,7 @@ import {HttpClientModule} from '@angular/common/http';
 
 const appRoutes: Routes = [
   { path : 'list', component: CarlistComponent },
-  { path : 'edit/:id', component: CreateCarComponent },
+  { path : 'edit', component: CreateCarComponent },
   { path : '', redirectTo : '/list', pathMatch : 'full' }
 ];
 

@@ -1,4 +1,4 @@
-# Car CRUD Back End
+# Car CRUD Front End
 > Front end of a web app that uses Angular CLI as framework. 
 
 [![NPM Version][npm-image]][npm-url]

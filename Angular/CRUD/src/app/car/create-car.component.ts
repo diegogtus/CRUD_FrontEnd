@@ -11,7 +11,7 @@ import { Car } from '../models/car.model';
 })
 export class CreateCarComponent implements OnInit {
 panelTitle: string;
-car: Car;
+car: Car = new Car("", "", "", 0, 0, "", "");
   constructor(private _carService: CarService, private _router: Router,
     private _route: ActivatedRoute) {
 
@@ -19,8 +19,9 @@ car: Car;
 
   ngOnInit() {
     this._route.paramMap.subscribe(parameterMap => {
-      const id = parameterMap.get('_id');
+      const id = parameterMap.get('id');
       //const id = "5dd957ccae650461ec45dcdd";
+      console.log("este es el id recibido", id);
       this.getCar(id);
     });
   }
@@ -33,15 +34,16 @@ private getCar(id: string){
       year : 0,
       displacement : 0,
       description : null,
-      photoPath : null
+      path : null
     };
     console.log("Carro Vacio");
     this.panelTitle = 'Create';
   } else{
     this.panelTitle = 'Edit';
     this._carService.getCar(id).subscribe(data=> {
-      console.log("Edit");
-      console.log();
+      console.log("Edit response - data:");
+      console.log(data);
+      this.car = <any>data;
     }, err => {
       alert(err);
     });
