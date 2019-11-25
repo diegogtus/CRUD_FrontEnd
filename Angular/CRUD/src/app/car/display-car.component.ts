@@ -36,7 +36,9 @@ export class DisplayCarComponent implements OnInit { private selectedEmployeeId:
     console.log(this.car);
   }
   editCar(){
-    this._router.navigate(['/edit', this.car.id]);
+    console.log(this.car._id);
+    this._router.navigate(['/edit', this.car._id]);
+    
   }
   deleteCar(id){
     this._carService.deleteCar(id).subscribe(data =>{

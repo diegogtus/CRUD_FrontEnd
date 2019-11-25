@@ -11,68 +11,45 @@ export class CarService {
 	public headers: Headers;
 	httpOptions: any;
   constructor(private httpClient: HttpClient) {}
-    private listCar: Car[] = [
-        {
-          id: "1",
-          brand: 'Chevrolet',
-          model: 'Camaro',
-          year: 2019,
-          displacement: 4,
-          description: 'The main character of transformers.',
-          photoPath: '../../assets/images/camaro.jpg',
-    
-        },
-        {
-          id: "2",
-          brand: 'Ford',
-          model: 'Mustang',
-          year: 2019,
-          displacement: 4,
-          description: 'The bad guy of Transformers.',
-          photoPath: '../../assets/images/mustang.jpg',
-    
-        },
-        {
-          id: "3",
-          brand: 'Subaru',
-          model: 'BRZ',
-          year: 2019,
-          displacement: 4,
-          description: 'The new super cheap car.',
-          photoPath: '../../assets/images/brz.jpg',
-    
-        },
-      ];
-    getCars():  Observable<Car[]> {
-      return  this.httpClient.get<Car[]>('http://localhost:8000/api/v1/cars/');
+      getCars() {
+      return  this.httpClient.get('http://localhost:8000/api/v1/cars/');
       
     }
-    getCar(id: string):  Observable<Car[]> {
-      return  this.httpClient.get<Car[]>('http://localhost:8000/api/v1/cars/:id');
+    getCar(id: string){
+      return this.httpClient.get('http://localhost:8000/api/v1/cars/' +  id)
+      .pipe(
+        catchError(this.handleError)
+      )
   }
   save(car: Car){
-    console.log("Carro a enviar");
-    console.log(car);
-    this.httpOptions = {
-			headers: new HttpHeaders({
-			'Accept':  'application/json',
-			'Content-Type': 'application/json',
-			})
-		};
-    return this.httpClient.post('http://localhost:8000/api/v1/cars/', car, this.httpOptions)
-		.pipe(
-			catchError(this.handleError)
-		)
-    /* if("brand": car.id === null){
-      const maxid = this.listCar.reduce(function(e1, e2){
-        return (e1.id > e2.id) ? e1 : e2;
-      }).id;
-      car.id = maxid + 1 ;
-      this.listCar.push(car);
-    } else {
-      const foundIndex = this.listCar.findIndex(e => e.id === car.id);
-      this.listCar[foundIndex] = car;
-    } */
+    
+      console.log("Carro a enviar");
+      console.log(car);
+      this.httpOptions = {
+        headers: new HttpHeaders({
+        'Accept':  'application/json',
+        'Content-Type': 'application/json',
+        })
+      };
+      return this.httpClient.post('http://localhost:8000/api/v1/cars/', car, this.httpOptions)
+      .pipe(
+        catchError(this.handleError)
+      )
+   }
+
+  updateCar(car: Car){
+      console.log("Carro a editar");
+      console.log(car._id);
+      this.httpOptions = {
+        headers: new HttpHeaders({
+        'Accept':  'application/json',
+        'Content-Type': 'application/json',
+        })
+      };
+      return this.httpClient.put('http://localhost:8000/api/v1/cars/' +  car._id, car, this.httpOptions)
+      .pipe(
+        catchError(this.handleError)
+      )
   }
 
   deleteCar(id){

@@ -19,37 +19,54 @@ car: Car;
 
   ngOnInit() {
     this._route.paramMap.subscribe(parameterMap => {
-      const id = +parameterMap.get('id');
+      const id = parameterMap.get('_id');
+      //const id = "5dd957ccae650461ec45dcdd";
       this.getCar(id);
     });
   }
-private getCar(id: number){
-  if(id === 0){
+private getCar(id: string){
+  if(id == null){
     this.car = {
-      id : null,
+      _id : null,
       brand : null,
       model : null,
       year : 0,
       displacement : 0,
       description : null,
       photoPath : null
-  
     };
+    console.log("Carro Vacio");
     this.panelTitle = 'Create';
   } else{
     this.panelTitle = 'Edit';
-    //this.car =  this._carService.getCar(id);
+    this._carService.getCar(id).subscribe(data=> {
+      console.log("Edit");
+      console.log();
+    }, err => {
+      alert(err);
+    });
   }
 }
 
   saveCar() : void {
-    const newCar: Car = Object.assign({}, this.car);
-    this._carService.save(newCar).subscribe(data=> {
-      console.log("Create");
-      console.log(data);
-      this._router.navigate(['list']);
-    }, err => {
+    if (this.car._id == null) {
+      const newCar: Car = Object.assign({}, this.car);
+      this._carService.save(newCar).subscribe(data=> {
+        console.log("Create");
+        console.log(data);
+        this._router.navigate(['list']);
+      }, err => {
+        alert(err);
+      });
+    } else {
+      const newCar: Car = Object.assign({}, this.car);
+      this._carService.updateCar(newCar).subscribe( () => {
+        console.log("Update");
+        this._router.navigate(['list']);
+      }, err => {
       alert(err);
     });
+    }
+    
   }
 }
