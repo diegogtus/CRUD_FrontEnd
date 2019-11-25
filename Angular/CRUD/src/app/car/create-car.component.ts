@@ -26,7 +26,7 @@ car: Car = new Car("", "", "", 0, 0, "", "");
     });
   }
 private getCar(id: string){
-  if(id == null){
+  if(id == "0"){
     this.car = {
       _id : null,
       brand : null,
