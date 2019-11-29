@@ -35,15 +35,20 @@ export class DisplayCarComponent implements OnInit { private selectedEmployeeId:
     console.log("Entramos al componente display car");
     console.log(this.car);
   }
+  createCar(){
+    console.log(this.car._id);
+    this._router.navigate(['create']);
+  }
   editCar(){
     console.log(this.car._id);
-    this._router.navigate(['/edit', this.car._id]);
+    this._router.navigate(['edit', this.car._id]);
     
   }
+ 
   deleteCar(id){
     this._carService.deleteCar(id).subscribe(data =>{
       console.log(data);
-      this._router.navigate(["list"]);
+      this._router.navigate(['list']);
     }, err => {
       console.log(err);
     });

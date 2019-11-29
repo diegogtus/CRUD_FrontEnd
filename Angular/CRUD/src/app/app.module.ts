@@ -9,13 +9,15 @@ import { CarService } from './car/car.service';
 import { AppComponent } from './app.component';
 import { CarlistComponent } from './car/carlist.component';
 import { CreateCarComponent } from './car/create-car.component';
+import { EditCarComponent } from './car/edit-car.component';
 import { from } from 'rxjs';
 import { DisplayCarComponent } from './car/display-car.component';
 import {HttpClientModule} from '@angular/common/http';
 
 const appRoutes: Routes = [
   { path : 'list', component: CarlistComponent },
-  { path : 'edit/:id', component: CreateCarComponent },
+  { path : 'edit/:id', component: EditCarComponent },
+  { path : 'create', component: CreateCarComponent },
   { path : '', redirectTo : '/list', pathMatch : 'full' }
 ];
 
@@ -24,7 +26,8 @@ const appRoutes: Routes = [
     AppComponent,
     CarlistComponent,
     CreateCarComponent,
-    DisplayCarComponent
+    DisplayCarComponent,
+    EditCarComponent
   ],
   imports: [
     AlertModule.forRoot(),
