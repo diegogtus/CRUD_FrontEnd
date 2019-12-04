@@ -34,6 +34,7 @@ export class DisplayCarComponent implements OnInit { private selectedEmployeeId:
   ngOnInit() {
     console.log("Entramos al componente display car");
     console.log(this.car);
+    alert("funciona");
   }
   createCar(){
     console.log(this.car._id);

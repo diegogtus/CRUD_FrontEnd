@@ -12,11 +12,10 @@ export class CarService {
 	httpOptions: any;
   constructor(private httpClient: HttpClient) {}
       getCars() {
-      return  this.httpClient.get('http://localhost:8000/api/v1/cars/');
-      
+      return  this.httpClient.get('http://3.135.212.39:8000/api/v1/cars/');
     }
     getCar(id: string){
-      return this.httpClient.get('http://localhost:8000/api/v1/cars/' +  id)
+      return this.httpClient.get('http://3.135.212.39:8000/api/v1/cars/' +  id)
       .pipe(
         catchError(this.handleError)
       )
@@ -31,7 +30,7 @@ export class CarService {
         'Content-Type': 'application/json',
         })
       };
-      return this.httpClient.post('http://localhost:8000/api/v1/cars/', car, this.httpOptions)
+      return this.httpClient.post('http://3.135.212.39:8000/api/v1/cars/', car, this.httpOptions)
       .pipe(
         catchError(this.handleError)
       )
@@ -46,7 +45,7 @@ export class CarService {
         'Content-Type': 'application/json',
         })
       };
-      return this.httpClient.put('http://localhost:8000/api/v1/cars/' +  car._id, car, this.httpOptions)
+      return this.httpClient.put('http://3.135.212.39:8000/api/v1/cars/' +  car._id, car, this.httpOptions)
       .pipe(
         catchError(this.handleError)
       )
@@ -54,7 +53,7 @@ export class CarService {
 
   deleteCar(id){
     console.log("id a enviar", id);
-    return  this.httpClient.delete('http://localhost:8000/api/v1/cars/' + id)
+    return  this.httpClient.delete('http://3.135.212.39:8000/api/v1/cars/' + id)
     .pipe(catchError(this.handleError));
   }
 
